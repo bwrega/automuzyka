@@ -11,15 +11,15 @@ class DroidWatch():
 	s = Settings()
 	ostatnioWidziany=time.time()
 	ostatniPoczatekPrzerwy = 0
-	def watch(self, reactions):
+	def watch(self):
 		guardInEndlessLoop(self.s.czestoscSprawdzaniaWSekundach, self.checkFunction, self.executeOnSuccess, self.executeOnFailure)
 	def executeOnSuccess(self):
 		currentTime = time.time()
 		przerwa = currentTime - self.ostatnioWidziany
 		if przerwa>self.s.minimalnyCzasPrzerwyWSekundach:
-			reactions.callbackPowrotPoPrzerwie()
+			self.s.reactions.callbackPowrotPoPrzerwie()
 		else:
-			reactions.callbackCalyCzasOnline()
+			self.s.reactions.callbackCalyCzasOnline()
 		self.ostatnioWidziany = currentTime
 	def executeOnFailure(self):
 		currentTime = time.time()
@@ -27,11 +27,11 @@ class DroidWatch():
 		if self.ostatniPoczatekPrzerwy < self.ostatnioWidziany:
 			if przerwa>self.s.minimalnyCzasPrzerwyWSekundach:
 				self.ostatniPoczatekPrzerwy = currentTime
-				reactions.callbackPoczatekPrzerwy()
+				self.s.reactions.callbackPoczatekPrzerwy()
 			else:
-				reactions.callbackKrotkaPrzerwa()
+				self.s.reactions.callbackKrotkaPrzerwa()
 		else:
-			reactions.callbackWTrakcieDlugiejPrzerwy()
+			self.s.reactions.callbackWTrakcieDlugiejPrzerwy()
 
 	def checkFunction(self):
 		przynajmniejJedenOdpowiedzial=False
@@ -45,6 +45,5 @@ class DroidWatch():
 		return przynajmniejJedenOdpowiedzial
 
 if __name__ == '__main__':
-	reactions = MocpReactions()
-	DroidWatch().watch(reactions)
+	DroidWatch().watch()
 
