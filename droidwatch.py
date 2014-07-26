@@ -39,7 +39,7 @@ class DroidWatch():
 		try:
 			while not przynajmniejJedenOdpowiedzial:
 				ip=ipIterator.next()
-				przynajmniejJedenOdpowiedzial = przynajmniejJedenOdpowiedzial or not subprocess.call(["./pingsilently",ip])
+				przynajmniejJedenOdpowiedzial = przynajmniejJedenOdpowiedzial or not subprocess.call(["pingsilently",ip])
 		except StopIteration:
 			pass
 		return przynajmniejJedenOdpowiedzial
