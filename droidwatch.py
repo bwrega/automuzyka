@@ -2,8 +2,8 @@
 
 from watchdog import guardInEndlessLoop
 from settings import Settings
-from reactions import Reactions
-from mocpreactions import MocpReactions
+from reactions.reactions import Reactions
+from reactions.mocpreactions import MocpReactions
 import time
 import subprocess
 
@@ -39,9 +39,9 @@ class DroidWatch():
 		try:
 			while not przynajmniejJedenOdpowiedzial:
 				ip=ipIterator.next()
-				przynajmniejJedenOdpowiedzial = przynajmniejJedenOdpowiedzial or not subprocess.call(["ping","-c","1","-w","1",ip])
+				przynajmniejJedenOdpowiedzial = przynajmniejJedenOdpowiedzial or not subprocess.call(["./pingsilently",ip])
 		except StopIteration:
-			print "StopIteration"
+			pass
 		return przynajmniejJedenOdpowiedzial
 
 if __name__ == '__main__':

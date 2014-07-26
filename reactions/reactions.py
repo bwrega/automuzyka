@@ -1,12 +1,12 @@
 class Reactions():
 	def callbackPowrotPoPrzerwie(self):
-		pass
+		print "callbackPowrotPoPrzerwie"
 	def callbackCalyCzasOnline(self):
-		pass
+		print "callbackCalyCzasOnline"
 	def callbackPoczatekPrzerwy(self):
-		pass
+		print "callbackPoczatekPrzerwy"
 	def callbackKrotkaPrzerwa(self):
-		pass
+		print "callbackKrotkaPrzerwa"
 	def callbackWTrakcieDlugiejPrzerwy(self):
-		pass
+		print "callbackWTrakcieDlugiejPrzerwy"
 
