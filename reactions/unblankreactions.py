@@ -1,3 +1,4 @@
+import subprocess
 from reactions import Reactions
 
 class UnblankReactions(Reactions):
